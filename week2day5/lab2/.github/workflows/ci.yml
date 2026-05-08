@@ -1,0 +1,16 @@
+name: Healthcare CI
+on:  
+  [cite_start]pull_request: # Trigger on PRs 
+jobs:  
+  test:    
+    runs-on: ubuntu-latest    
+    steps:      
+      - uses: actions/checkout@v4      
+      - name: Setup Python        
+        uses: actions/setup-python@v5      
+      - name: Install Dependencies        
+        run: pip install -r requirements.txt      
+      - [cite_start]name: Run Lint # flake8 linting 
+        run: flake8 .
+      - [cite_start]name: Run Tests # pytest with coverage [cite: 53, 57]
+        run: pytest --cov=.
